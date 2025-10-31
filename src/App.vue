@@ -1,6 +1,12 @@
 <script setup>
-import { onMounted, onUpdated } from 'vue'
+import YouDidIt from './components/YouDidIt.vue'
+import BindLink from './components/BindLink.vue'
+import RandomNumber from './components/RandomNumber.vue'
+import CountYourBlessings from './components/CountYourBlessings.vue'
+import BootstrapIcons from './components/BootstrapIcons.vue'
+import StudentsGrades from './components/StudentsGrades.vue'
 
+import { onMounted, onUpdated } from 'vue'
 onMounted(() => {
   console.log('App mounted')
 })
@@ -10,56 +16,43 @@ onUpdated(() => {
 })
 
 import { ref } from 'vue'
-const message = ref("Hello from Vue!")
-const link = ref("https://emanuel.ro")
-const target = ref("_blank")
+const showIcons = ref(false)
 
-const clickHandler = () => {
-  message.value = "Button clicked!"
-}
+const icons = ['brightness-high', 'bell', 'cloud', 'heart', 'star'];
+const icon = ref(icons[0]);
 
-const randomNumber = ref(null)
-const updateRandomNumber = () => {
-  randomNumber.value = Math.random()
-}
-
-const counter = ref(0)
-const incrementCounter = () => {
-  counter.value++
-}
+const changeIcon = () => {
+ icon.value = icons[Math.floor(Math.random() * icons.length)];
+};
 </script>
 
 <template>
-  <h1>You did it!</h1> 
-  <button @click="clickHandler">Click me</button>
-  <p>{{ message }}</p>
-  <br>
-  <input type="text" 
-     v-model="message"
-     @change="console.log('Text changed')" 
-     @input="console.log('You have typed: ' + $event.target.value)"
-     @keydown="console.log('Key pressed: ' + $event.key)"></input>
-  <br>
-  <a :href="link" :target="target">Visit Emanuel website</a>
-  <br>
+  <YouDidIt />
   <hr>
-  <h3>Display a random number</h3>
-  <button @click="updateRandomNumber">Get a random number {{ randomNumber }}</button>
-  <div v-if="randomNumber">
-    <div v-if="randomNumber >= 0.5">Number is bigger or equal than 0.5</div>
-    <div v-else>Number is lower than 0.5</div>
+  <BindLink />
+  <hr>
+  <RandomNumber />
+  <hr>
+  <CountYourBlessings startCount="7" />
+  <CountYourBlessings :startCount="3+5" />
+  <CountYourBlessings startCount="9" />
+  <hr>
+  <input type="checkbox" v-model="showIcons"> Show Bootstrap Icons
+  <div v-if="showIcons">
+    <BootstrapIcons 
+      v-for="(bootstrapIcon, index) of [1,2,3]" 
+      :key="index" 
+      :icon="icon"
+      @iconClick="changeIcon"/>
+    <BootstrapIcons 
+      :icon="icon"
+      @iconClick="changeIcon"/>
   </div>
-  <br>
-  <div v-if="randomNumber && randomNumber >= 0.5">Number is bigger or equal than 0.5</div>
-  <div v-else-if="randomNumber">Number is lower than 0.5</div>
-  <br>
   <hr>
-  <h3>Counter</h3>
-  <button @click="counter++">Increment v1</button>
-  <button @click="incrementCounter">Increment v2</button>
-  <div>{{ counter }}</div>
+  <StudentsGrades />
 </template>
 
 <style>
- @import "tailwindcss";
+ @import "bootstrap-icons";
+ /* @import "tailwindcss"; */
 </style>
