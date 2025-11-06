@@ -3,8 +3,9 @@ import YouDidIt from './components/YouDidIt.vue'
 import BindLink from './components/BindLink.vue'
 import RandomNumber from './components/RandomNumber.vue'
 import CountYourBlessings from './components/CountYourBlessings.vue'
-import BootstrapIcons from './components/BootstrapIcons.vue'
+import HeaderWithIcon from './components/HeaderWithIcon.vue'
 import StudentsGrades from './components/StudentsGrades.vue'
+import CurrencyConverter from './components/CurrencyConverter.vue'
 
 import { onMounted, onUpdated } from 'vue'
 onMounted(() => {
@@ -17,13 +18,6 @@ onUpdated(() => {
 
 import { ref } from 'vue'
 const showIcons = ref(false)
-
-const icons = ['brightness-high', 'bell', 'cloud', 'heart', 'star'];
-const icon = ref(icons[0]);
-
-const changeIcon = () => {
- icon.value = icons[Math.floor(Math.random() * icons.length)];
-};
 </script>
 
 <template>
@@ -39,17 +33,15 @@ const changeIcon = () => {
   <hr>
   <input type="checkbox" v-model="showIcons"> Show Bootstrap Icons
   <div v-if="showIcons">
-    <BootstrapIcons 
-      v-for="(bootstrapIcon, index) of [1,2,3]" 
-      :key="index" 
-      :icon="icon"
-      @iconClick="changeIcon"/>
-    <BootstrapIcons 
-      :icon="icon"
-      @iconClick="changeIcon"/>
+    <HeaderWithIcon 
+      v-for="(header, index) of [1,2,3]" 
+      :key="index" />
+    <HeaderWithIcon />
   </div>
   <hr>
   <StudentsGrades />
+  <hr>
+  <CurrencyConverter />
 </template>
 
 <style>
