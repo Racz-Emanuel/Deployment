@@ -1,5 +1,5 @@
 <script setup>
-import GreenFlower from './components/flowers/GreenFlower.vue'
+import GreenFlower from '@/components/flowers/GreenFlower.vue'
 </script>
 
 <template>
