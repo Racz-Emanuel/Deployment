@@ -7,6 +7,7 @@
      <nav>
        <RouterLink to="/">Home</RouterLink>
        <RouterLink to="/flowers">Flowers</RouterLink>
+       <RouterLink to="/computed">Computed</RouterLink>
      </nav>
  </header>
 
