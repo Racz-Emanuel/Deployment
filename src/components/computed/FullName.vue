@@ -4,6 +4,16 @@ const emit = defineEmits(['update:fullName'])
 const firstName = ref("")
 const lastName = ref("")
 
+import { watch } from "vue"
+watch(firstName, (newVal, oldVal) => {
+   console.log(`firstName changed from ${oldVal} to ${newVal}`)
+})
+
+watch([firstName, lastName], ([newFirstName, newLastName], [oldFirstName, oldLastName]) => {
+   console.log(`firstName changed from ${oldFirstName} to ${newFirstName}`)
+   console.log(`lastName changed from ${oldLastName} to ${newLastName}`)
+})
+
 import { computed } from "vue"
 const fullName = computed(() => {
     const fN = firstName.value + " " + lastName.value
@@ -31,7 +41,7 @@ const showFullName = ref(true)
  </button>
 
  <div v-if="showFullName">
-    <p>Your Full Name: {{ fullName }}</p>
+    <p>Your Full Name: <b>{{ fullName }}</b></p>
     <p>{{ greeting }}</p>
 
  </div>
