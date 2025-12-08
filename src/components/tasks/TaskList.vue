@@ -1,4 +1,7 @@
 <script setup>
+import { useTask } from '@/stores/task';
+const taskStore = useTask();
+
 import TasksHeader from './TasksHeader.vue';
 import TaskBody from './TaskBody.vue';
 import TaskFooter from './TaskFooter.vue';
@@ -6,6 +9,6 @@ import TaskFooter from './TaskFooter.vue';
 
 <template>
   <TasksHeader />
-  <TaskBody v-for="value in [1,2,3,4,5]" />
+  <TaskBody v-for="(task, index) in taskStore.tasks" :task="task" :key="index"/>
   <TaskFooter />
 </template>

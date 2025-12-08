@@ -1,9 +1,25 @@
+<script setup>
+import { useTask } from '@/stores/task';
+const taskStore = useTask();
+
+defineProps({
+  taskId: {
+    type: Number,
+    required: true
+  },
+  isFavorite: {
+    type: Boolean,
+    required: true
+  }
+});
+</script>
+
 <template>
   <div>
-    <button>
-        <i class="bi bi-star"></i>
+    <button class="cursor-pointer mr-2" @click="taskStore.toggleFavorite(taskId)"  >
+        <i class="bi" :class="isFavorite ? 'bi-star-fill text-yellow-500' : 'bi-star'"></i>
     </button>
-    <button>
+    <button class="cursor-pointer" @click="taskStore.removeTask(taskId)">
         <i class="bi bi-trash"></i>
     </button>
   </div>
