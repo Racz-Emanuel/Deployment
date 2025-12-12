@@ -82,12 +82,12 @@ define(['./workbox-7f60d0f7'], (function (workbox) { 'use strict';
     "revision": "402b66900e731ca748771b6fc5e7a068"
   }, {
     "url": "index.html",
-    "revision": "7c5eba68cd40872eed1fb71741c5dbd2"
+    "revision": "dbf85ef5649b39e890854fea4e1a2fab"
   }, {
-    "url": "assets/index-DioqysjF.js",
+    "url": "assets/index-CtMNoYuK.js",
     "revision": null
   }, {
-    "url": "assets/index-B4hYadOt.css",
+    "url": "assets/index-BEbJzh1p.css",
     "revision": null
   }, {
     "url": "icons/android-bird.png",
